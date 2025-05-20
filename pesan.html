@@ -64,26 +64,27 @@
     }
 
 .kotakpesan {
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  padding: 0 10px;
+  padding: 16px;
 }
 
-.kotakpesan img,
-.kotakpesan video {
+.konten-media {
+  max-width: 90%;
   width: 100%;
-  max-width: 350px;
-  border-radius: 12px;
-  object-fit: cover;
-  margin-bottom: 20px;
+  background: white;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
-.kotakpesan img:hover,
-.kotakpesan video:hover {
-  transform: scale(1.02);
+.konten-media img,
+.konten-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
 }
 
 
@@ -185,11 +186,13 @@
     </div>
       <!-- Photo/Video box -->
       <div class="kotakpesan" id="photoBox">
+        <div class="konten-media">
         <img id="photo" src="" alt="Foto" />
         <video id="video" controls autoplay loop muted style="display: none;">
           <source id="videoSource" src="" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+      </div>
       </div>
     </div>
   </div>
