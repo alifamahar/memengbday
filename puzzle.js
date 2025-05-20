@@ -7,38 +7,35 @@ var otherTile;
 var turns = 0;
 
 window.onload = function() {
-    // Initialize the 2x3 board
+    //initialize the 5x5 board
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
+            //<img>
             let tile = document.createElement("img");
             tile.src = "./images/blank.jpg";
 
-            // DRAG FUNCTIONALITY
-            tile.addEventListener("dragstart", dragStart); 
-            tile.addEventListener("dragover", dragOver);   
-            tile.addEventListener("dragenter", dragEnter); 
-            tile.addEventListener("dragleave", dragLeave); 
-            tile.addEventListener("drop", dragDrop);       
-            tile.addEventListener("dragend", dragEnd);    
-
-            // Add touch event listeners for mobile devices
-            tile.addEventListener("touchstart", dragStart); 
-            tile.addEventListener("touchmove", dragMove);   
-            tile.addEventListener("touchend", dragEnd);     
+            //DRAG FUNCTIONALITY
+            tile.addEventListener("dragstart", dragStart); //click on image to drag
+            tile.addEventListener("dragover", dragOver);   //drag an image
+            tile.addEventListener("dragenter", dragEnter); //dragging an image into another one
+            tile.addEventListener("dragleave", dragLeave); //dragging an image away from another one
+            tile.addEventListener("drop", dragDrop);       //drop an image onto another one
+            tile.addEventListener("dragend", dragEnd);      //after you completed dragDrop
 
             document.getElementById("board").append(tile);
         }
     }
 
+    //pieces
     let pieces = [];
-    for (let i = 1; i <= rows * columns; i++) {
-        pieces.push(i.toString());
+    for (let i=1; i <= rows*columns; i++) {
+        pieces.push(i.toString()); //put "1" to "25" into the array (puzzle images names)
     }
     pieces.reverse();
-
-    for (let i = 0; i < pieces.length; i++) {
+    for (let i =0; i < pieces.length; i++) {
         let j = Math.floor(Math.random() * pieces.length);
 
+        //swap
         let tmp = pieces[i];
         pieces[i] = pieces[j];
         pieces[j] = tmp;
@@ -48,99 +45,83 @@ window.onload = function() {
         let tile = document.createElement("img");
         tile.src = "./images/" + pieces[i] + ".jpg";
 
-        // DRAG FUNCTIONALITY
-        tile.addEventListener("dragstart", dragStart); 
-        tile.addEventListener("dragover", dragOver);   
-        tile.addEventListener("dragenter", dragEnter); 
-        tile.addEventListener("dragleave", dragLeave); 
-        tile.addEventListener("drop", dragDrop);       
-        tile.addEventListener("dragend", dragEnd);    
-
-        // Add touch event listeners for mobile devices
-        tile.addEventListener("touchstart", dragStart); 
-        tile.addEventListener("touchmove", dragMove);   
-        tile.addEventListener("touchend", dragEnd);     
+        //DRAG FUNCTIONALITY
+        tile.addEventListener("dragstart", dragStart); //click on image to drag
+        tile.addEventListener("dragover", dragOver);   //drag an image
+        tile.addEventListener("dragenter", dragEnter); //dragging an image into another one
+        tile.addEventListener("dragleave", dragLeave); //dragging an image away from another one
+        tile.addEventListener("drop", dragDrop);       //drop an image onto another one
+        tile.addEventListener("dragend", dragEnd);      //after you completed dragDrop
 
         document.getElementById("pieces").append(tile);
     }
 }
 
-function dragStart(e) {
-    // This function is triggered when the user starts dragging the tile.
-    currTile = this; 
+//DRAG TILES
+function dragStart() {
+    currTile = this; //this refers to image that was clicked on for dragging
 }
 
 function dragOver(e) {
-    e.preventDefault(); // Allow dropping
+    e.preventDefault();
 }
 
 function dragEnter(e) {
-    e.preventDefault(); // Allow entering the drop zone
+    e.preventDefault();
 }
 
 function dragLeave() {
-    // Handle dragging away from the tile (if needed)
+
 }
 
-function dragMove(e) {
-    e.preventDefault(); // Prevent default behavior for mobile touch events
-    // Handle the movement of the dragged element based on touch positions
-    if (currTile && e.touches) {
-        let touch = e.touches[0];
-        currTile.style.position = "absolute";
-        currTile.style.left = touch.pageX - currTile.offsetWidth / 2 + "px";
-        currTile.style.top = touch.pageY - currTile.offsetHeight / 2 + "px";
+function dragDrop() {
+    otherTile = this; //this refers to image that is being dropped on
+}
+
+function dragEnd() {
+    if (currTile.src.includes("blank")) {
+        return;
     }
-}
+    let currImg = currTile.src;
+    let otherImg = otherTile.src;
+    currTile.src = otherImg;
+    otherTile.src = currImg;
 
-function dragDrop(e) {
-    // This function is triggered when a tile is dropped onto another one
-    otherTile = this;
-}
+    turns += 1;
+    document.getElementById("turns").innerText = turns;
 
-function dragEnd(e) {
-    // Swap images between the dragged and dropped tiles
-    if (currTile && otherTile) {
-        let currImg = currTile.src;
-        let otherImg = otherTile.src;
-        currTile.src = otherImg;
-        otherTile.src = currImg;
-
-        turns += 1;
-        document.getElementById("turns").innerText = turns;
-
-        // Check if all tiles are filled
-        let boardTiles = document.getElementById("board").querySelectorAll("img");
-        let allFilled = true;
-        boardTiles.forEach(tile => {
-            if (tile.src.includes("blank")) {
-                allFilled = false;
-            }
-        });
-
-        // If all tiles are filled, show the "Next" button
-        if (allFilled) {
-            document.getElementById("nextBtn").style.display = "inline-block";
+    // Cek apakah semua tile di board sudah terisi
+    let boardTiles = document.getElementById("board").querySelectorAll("img");
+    let allFilled = true;
+    boardTiles.forEach(tile => {
+        if (tile.src.includes("blank")) {
+            allFilled = false;
         }
+    });
+
+    // Jika semua sudah terisi, tampilkan tombol "Next"
+    if (allFilled) {
+        document.getElementById("nextBtn").style.display = "inline-block";
     }
 }
+
 
 // Event listener for the "Next" button
 const submitButton = document.getElementById('nextBtn');
 submitButton.addEventListener('click', function() {
-    window.location.href = 'kuis3.html'; // Navigate to the next page
+    window.location.href = 'kuis3.html'; // Arahkan ke halaman berikutnya
 });
 
 function goToNext() {
-    // Reset the puzzle
+    // Kosongkan papan (ganti semua jadi blank)
     let boardTiles = document.getElementById("board").querySelectorAll("img");
     boardTiles.forEach(tile => {
         tile.src = "./images/blank.jpg";
     });
 
-    // Shuffle the pieces again
+    // Reset dan acak ulang pieces
     let piecesContainer = document.getElementById("pieces");
-    piecesContainer.innerHTML = ""; // Remove previous pieces
+    piecesContainer.innerHTML = ""; // hapus gambar sebelumnya
 
     let pieces = [];
     for (let i = 1; i <= rows * columns; i++) {
@@ -166,10 +147,47 @@ function goToNext() {
         piecesContainer.append(tile);
     }
 
-    // Reset turn counter
+    // Reset turn
     turns = 0;
     document.getElementById("turns").innerText = turns;
 
-    // Hide the "Next" button again
+    // Sembunyikan tombol Next lagi
     document.getElementById("nextBtn").style.display = "none";
+    
+}
+tile.addEventListener("touchstart", touchStart);
+tile.addEventListener("touchend", touchEnd);
+function touchStart(e) {
+    currTile = e.target;
+}
+
+function touchEnd(e) {
+    let touch = e.changedTouches[0];
+    let element = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (element && element.tagName === "IMG" && element.parentNode.id === "board") {
+        otherTile = element;
+
+        if (currTile.src.includes("blank")) return;
+
+        let currImg = currTile.src;
+        let otherImg = otherTile.src;
+        currTile.src = otherImg;
+        otherTile.src = currImg;
+
+        turns += 1;
+        document.getElementById("turns").innerText = turns;
+
+        let boardTiles = document.getElementById("board").querySelectorAll("img");
+        let allFilled = true;
+        boardTiles.forEach(tile => {
+            if (tile.src.includes("blank")) {
+                allFilled = false;
+            }
+        });
+
+        if (allFilled) {
+            document.getElementById("nextBtn").style.display = "inline-block";
+        }
+    }
 }
