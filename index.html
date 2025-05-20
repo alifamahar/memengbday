@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+  <title>main yuk</title>
+</head>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Jersey 20:wght@200;300;400;500;600;700&display=swap");
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Jersey 20", sans-serif;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Pastikan tinggi body memenuhi viewport */
+    margin: 0;
+    /* Hapus margin bawaan */
+    background-image: url("bggg.gif");
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .image {
+    margin-top: 70px;
+    height: 30px;
+    opacity: 0;
+    /* Sembunyikan gambar awalnya */
+    transition: opacity 1s ease-in-out;
+    /* Animasi untuk mengubah opacity */
+  }
+
+  .container img:hover {
+    transform: scale(1.1);
+  }
+</style>
+
+<body>
+  </style>
+
+  <body>
+    <div class="container">
+      <a href="kuis1.html"><img src="start.png" class="image" id="startButton"></a>
+    </div>
+    <audio id="audioPlayer" src="8bit.mp3" type="audio/mpeg" autoplay></audio>
+    <script>
+      
+      window.onload = () => {
+        const startButton = document.getElementById('startButton');
+        setTimeout(() => {
+          startButton.style.opacity = 1; // Gambar akan muncul setelah 2 detik
+        }, 1000); // 2000ms = 2 detik
+      };
+    </script>
+  </body>
+
+</html>
