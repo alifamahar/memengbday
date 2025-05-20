@@ -47,7 +47,7 @@ h1 {
 }
 
 #pieces {
-    width: min(200px);
+    width: min(250px);
     height: auto;
     border: 1px solid #ffffff;
     margin: 20px auto;
@@ -85,7 +85,7 @@ h1 {
 
 /* Potongan gambar di pieces */
 #pieces img {
-    width: calc(100% / 4 - 10px); /* 6 kolom dengan jarak antar gambar */
+    width: calc(100% / 5 - 10px); /* 6 kolom dengan jarak antar gambar */
     height: auto;
     aspect-ratio: 1 / 1;
     border: 0.5px solid rgb(103, 255, 76);
