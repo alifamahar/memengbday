@@ -155,10 +155,10 @@ opacity: 0.3;
 
 .container {
   position: absolute; /* Agar dapat ditempatkan relatif ke body */
-  top: 50%; /* Sesuaikan posisi vertikal */
+  top: 60%; /* Sesuaikan posisi vertikal */
   left:50%;
   transform: translate(-50%, -50%); /* Pusatkan secara proporsional */
-  width: 200px; /* Lebar form */
+  width: 250px; /* Lebar form */
 }
 
 .form {
