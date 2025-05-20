@@ -1,0 +1,111 @@
+/* Reset dasar */
+
+@import url("https://fonts.googleapis.com/css2?family=Jersey 20:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jersey 20", sans-serif;
+}
+body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Pastikan tinggi body memenuhi viewport */
+    margin: 0; /* Hapus margin bawaan */
+    background-image: url("bg0.gif");
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  
+/* Judul */
+h1 {
+    font-size: 32px;
+    color: #ffd99c;
+}
+
+/* Board untuk menyusun puzzle */
+#board {
+    width: min(180px);
+    height: min(270px); /* Maksimal 600px, tapi bisa mengecil di layar kecil */
+    aspect-ratio: 3 / 2; /* Menjaga rasio 6 kolom x 4 baris */
+    margin: 20px auto;
+    margin-top: 50%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-radius: 30px;
+}
+
+/* Potongan gambar dalam board */
+#board img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid #b4488c;
+}
+
+#pieces {
+    width: min(200px);
+    height: auto;
+    border: 1px solid #ffffff;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px;
+    border-radius: 10px;
+    position: relative; /* Allow absolute positioning inside */
+}
+
+#nextBtn {
+    position: absolute; /* Position it on top of the pieces */
+    top: 75.5%;  /* Adjust the top positioning */
+    left: 50%;  /* Adjust the left positioning */
+    transform: translate(-50%, -50%); /* Center the button */
+    z-index: 10; /* Ensure it stays on top */
+    width: min(200px);
+    height: auto;
+    margin: 20px auto;
+    display: flex;
+    background: rgb(192, 56, 250);
+    color: aliceblue;
+    border: 1px solid #ffffff;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#nextBtn:hover {
+    background: rgb(251, 106, 215);
+  }
+
+/* Potongan gambar di pieces */
+#pieces img {
+    width: calc(100% / 6 - 6px); /* 6 kolom dengan jarak antar gambar */
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 0.5px solid rgb(103, 255, 76);
+    cursor: grab;
+    border-radius: 5px;
+    gap: 5px;
+}
+
+/* Gaya jumlah turns */
+h2 {
+    font-size: 24px;
+    color: #f39c12;
+}
+
+#continue-btn:hover {
+    background-color: #c500bb; /* Warna lebih gelap saat hover */
+    transform: scale(1.05);
+}
+
+#continue-btn:active {
+    transform: scale(0.95);
+}
+

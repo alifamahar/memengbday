@@ -1,0 +1,233 @@
+/* Import Google font - Jersey 20 */
+@import url("https://fonts.googleapis.com/css2?family=Jersey 20:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jersey 20", sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Pastikan tinggi body memenuhi viewport */
+  margin: 0; /* Hapus margin bawaan */
+  background-image: url("bg2.gif");
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.next-image {
+  position: relative;
+  
+  }
+  .next-image img {
+  position: absolute;
+  width: 50px;
+  left: 460px;
+  top: 150px;
+  }
+
+  #next-image {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #next-image img {
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  #next-image img:hover {
+    transform: scale(1.1);
+  }
+  
+  .clickable-image {
+position: relative;
+
+}
+.clickable-image img {
+position: absolute;
+width: 50px;
+left: 460px;
+top: 200px;
+}
+.clickable-image img:hover {
+  transform: scale(1.1);
+}
+
+.image {
+opacity: 1;
+animation: fadeIn 1s ease forwards;
+animation-delay: 3s;
+transition: .5s ease;
+backface-visibility: hidden;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 105, 255, 0.5); /* Pink 50% opacity */
+  z-index: 5;
+  display: none; /* Hindari interaksi saat tersembunyi */
+  transition: opacity 0.4s ease; /* Tambahkan transisi */
+}
+
+.overlay.visible {
+  opacity: 1; /* Munculkan overlay */
+  pointer-events: auto; /* Aktifkan interaksi */
+}
+#error-message {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#success-message {
+  color: green;
+  font-size: 14px;
+  margin-top: 10px;
+  display: none;
+}
+
+/* Card */
+.card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9); /* Mulai dengan ukuran lebih kecil */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  z-index: 20;
+  opacity: 0; /* Awalnya tidak terlihat */
+  pointer-events: none; /* Hindari interaksi saat tersembunyi */
+  transition: opacity 0.4s ease, transform 0.4s ease; /* Tambahkan transisi */
+}
+
+.card.visible {
+  opacity: 1; /* Munculkan card */
+  transform: translate(-50%, -50%) scale(1); /* Kembali ke ukuran normal */
+  pointer-events: auto; /* Aktifkan interaksi */
+}
+
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 15px 0 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+}
+
+.card button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card button:hover {
+  background: #555;
+}
+.container:hover .image {
+opacity: 0.3;
+} 
+
+.container {
+  position: absolute; /* Agar dapat ditempatkan relatif ke body */
+  top: 50%; /* Sesuaikan posisi vertikal */
+  left:50%;
+  transform: translate(-50%, -50%); /* Pusatkan secara proporsional */
+  width: 200px; /* Lebar form */
+}
+
+.form {
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.form .input-box label {
+  color: #fff; /* Ubah warna label agar terlihat */
+}
+
+.form .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 20px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+.input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.form .column {
+  display: flex;
+  column-gap: 15px;
+}
+.form button {
+  height: 30px;
+  width: 100%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgb(251, 106, 215);
+}
+.form button:hover {
+  background: rgb(192, 56, 250);
+}
+/*Responsive*/
+@media screen and (max-width: 500px) {
+  .form .column {
+    flex-wrap: wrap;
+  }
+  .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
+}
+
+#menu-btn {
+  position: fixed; /* Agar tetap berada di posisi atas kiri saat halaman di-scroll */
+  top: 48px; /* Jarak dari atas */
+  left: 65px; /* Jarak dari kiri */
+  z-index: 1000; /* Pastikan berada di atas elemen lainnya */
+}
+
+#menu-btn button {
+  background-color: rgba(0, 0, 0, 0); 
+  color: rgba(0, 0, 0, 0); 
+  border: none;
+}

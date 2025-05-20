@@ -1,0 +1,50 @@
+/* Import Google font - Jersey 20 */
+@import url("https://fonts.googleapis.com/css2?family=Jersey 20:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jersey 20", sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Pastikan tinggi body memenuhi viewport */
+  margin: 0; /* Hapus margin bawaan */
+  background-image: url("bg3.gif");
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.video-container video{
+  position: absolute; /* Agar dapat ditempatkan relatif ke body */
+  top: 50%; /* Sesuaikan posisi vertikal */
+  left:50%;
+  transform: translate(-50%, -50%); /* Pusatkan secara proporsional */
+  max-width: 180px; /* Lebar form */
+}
+#hobah-button {
+    position: absolute; /* Position it on top of the pieces */
+    top: 80%;  /* Adjust the top positioning */
+    left: 50%;  /* Adjust the left positioning */
+    transform: translate(-50%, -50%); /* Center the button */
+    z-index: 10; /* Ensure it stays on top */
+    width: min(200px);
+    height: auto;
+    margin: 20px auto;
+    display: flex;
+    background: rgb(192, 56, 250);
+    color: aliceblue;
+    border: 1px solid #ffffff;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#hobah-button:hover {
+  background: rgb(251, 106, 215);
+}
