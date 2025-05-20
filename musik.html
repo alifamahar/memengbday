@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Persist Example</title>
+</head>
+<body>
+
+    <!-- Elemen Audio -->
+    <audio id="audioPlayer" src="yoasobi.mp3" type="audio/mpeg" autoplay></audio>
+    
+    <!-- Tombol untuk menghentikan audio -->
+    <button id="exitBtn">Exit</button>
+
+    <script>
+        // Mendapatkan elemen audio dan tombol exit
+        var audioPlayer = document.getElementById("audioPlayer");
+        var exitBtn = document.getElementById("exitBtn");
+
+        // Memeriksa status pemutaran audio saat halaman dimuat
+        window.onload = function() {
+            var audioStatus = localStorage.getItem("audioStatus");
+            if (audioStatus === "playing") {
+                audioPlayer.play();  // Lanjutkan audio jika sebelumnya diputar
+            } else if (audioStatus === "paused") {
+                audioPlayer.pause();  // Pause jika sebelumnya dijeda
+            }
+        };
+
+        // Menyimpan status pemutaran setiap kali audio diputar atau dijeda
+        audioPlayer.addEventListener("play", function() {
+            localStorage.setItem("audioStatus", "playing");
+        });
+
+        audioPlayer.addEventListener("pause", function() {
+            localStorage.setItem("audioStatus", "paused");
+        });
+
+        // Menambahkan event listener untuk tombol exit
+        exitBtn.addEventListener("click", function() {
+            audioPlayer.pause();  // Menjeda audio saat exit
+            audioPlayer.currentTime = 0;  // Mengatur posisi audio ke awal
+            localStorage.removeItem("audioStatus");  // Menghapus status pemutaran
+        });
+    </script>
+
+</body>
+</html>

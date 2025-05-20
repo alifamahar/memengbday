@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3</title>
+    <link rel="stylesheet" href="vid.css">
+</head>
+<body>
+    <div class="content">
+
+        <div class="video-container">
+            <video id="background-video" autoplay loop>
+
+                <source src="vid.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <button id="hobah-button" style="display: none;" onclick="window.location.href='tiuplilin.html'">hobah💃 lanjut mang🤙🤪</button>
+    </div>
+
+    <script>
+        // Get the video element and the button
+const video = document.getElementById('background-video');
+const hobahButton = document.getElementById('hobah-button');
+
+// Add an event listener for the time update of the video
+video.addEventListener('timeupdate', function() {
+    // Check if the current time of the video is 51 seconds or more
+    if (video.currentTime >= 51 && hobahButton.style.display === 'none') {
+        hobahButton.style.display = 'block'; // Show the button after 51 seconds
+    }
+});
+
+
+    </script>
+</body>
+</html>
